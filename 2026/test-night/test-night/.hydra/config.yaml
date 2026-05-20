@@ -1,0 +1,183 @@
+data_dir: ./outputs/${simulation.world_name}
+name: no-name-set
+kill_carla: true
+print_config: true
+seed: 8
+simulation:
+  weather:
+    cloudiness: 30
+    precipitation: 70
+    sun_altitude_angle: -90
+    sun_azimuth_angle: 0
+    fog_density: 0
+    fog_distance: 0
+    fog_falloff: 0.1
+    precipitation_deposits: 50
+    wind_intensity: 50
+    wetness: 50
+    scattering_intensity: 1.0
+    mie_scattering_scale: 0.03
+    rayleigh_scattering_scale: 0.0331
+    dust_storm: 0.0
+  world_name: Town02
+  carla:
+    bin: /home/ki/projects/work/carla/carla-0.9.14/
+    file: CarlaUE4.sh
+    quality_level: Epic
+    spawn: true
+    host: localhost
+    port: 2000
+    timeout: 120
+  ego:
+    index: 0
+    mode: seed
+    seed: ${seed}
+    model: vehicle.tesla.model3
+    autopilot: true
+    percentage_speed: -10.0
+    auto_lane_change: true
+    ignore_walkers_percentage: 0
+    ignore_lights_percentage: 0
+  pedestrians:
+    mode: seed
+    seed: ${seed}
+    number: 10
+    models: []
+    pedestrians_cross_factor: 10.0
+  vehicles:
+    mode: seed
+    seed: ${seed}
+    number: 25
+    filter: '*vehicle*'
+    broken_cars:
+    - vehicle.mitsubishi.fusorosa
+    - vehicle.carlamotors.firetruck
+    - vehicle.ford.ambulance
+    att_filters: null
+  skip_start_ticks: 200
+  scene_duration: 3600
+  fixed_delta_seconds: 0.1
+  max_substep_delta_time: 0.01
+  max_substeps: 16
+callbacks:
+  recorder:
+    _target_: carlagen.callback.CarlaRecorderCallback
+    recorder_file: carla.log
+  car_light_control:
+    _target_: carlagen.callback.misc.ControlCarLightsCallback
+  save_autopilot_actions:
+    _target_: carlagen.callback.saving.SaveAutopilotActions
+    every_n_frames: 10
+  save_collisions:
+    _target_: carlagen.callback.saving.SaveCollisions
+    sensor_name: collision
+    every_n_frames: 10
+  save_imu:
+    _target_: carlagen.callback.SaveIMUCallback
+    filename: imu.feather
+    every_n_frames: 10
+  save_gnss:
+    _target_: carlagen.callback.SaveGNSSCallback
+    filename: gnss.feather
+    every_n_frames: 10
+  save_weather:
+    _target_: carlagen.callback.SaveWeatherCallback
+    filename: weather.feather
+    every_n_frames: 10
+  save_camera:
+    _target_: carlagen.callback.SaveCameraCallback
+    directory: rgb-front
+    sensor_name: RGB Camera
+    every_n_frames: 10
+  save_instance_segmentation:
+    _target_: carlagen.callback.SaveInstanceSegmentationCallback
+    directory: segmentation-front
+    sensor_name: Instance Segmentation
+    every_n_frames: 10
+sensors:
+  camera:
+    _target_: carlagen.Sensor
+    name: RGB Camera
+    blueprint: sensor.camera.rgb
+    location:
+    - 0
+    - 0
+    - 2.0
+    rotation:
+    - 0
+    - 0
+    - 0
+    attributes:
+      image_size_x: 500
+      image_size_y: 500
+      fov: 90
+      focal_distance: 1000.0
+      blur_amount: 1.0
+      motion_blur_intensity: 0.45
+      motion_blur_max_distortion: 0.35
+  instance_segmentation:
+    _target_: carlagen.Sensor
+    name: Instance Segmentation
+    blueprint: sensor.camera.instance_segmentation
+    location:
+    - 0
+    - 0
+    - 2.0
+    rotation:
+    - 0
+    - 0
+    - 0
+    attributes:
+      image_size_x: 500
+      image_size_y: 500
+      fov: 90
+  gnss:
+    _target_: carlagen.Sensor
+    name: GNSS
+    blueprint: sensor.other.gnss
+    location:
+    - 0
+    - 0
+    - 0
+    rotation:
+    - 0
+    - 0
+    - 0
+    attributes:
+      noise_alt_bias: 0
+      noise_alt_stddev: 0
+      noise_lat_bias: 0
+      noise_lat_stddev: 0
+      noise_lon_bias: 0
+      noise_lon_stddev: 0
+      noise_seed: 0
+      sensor_tick: 0
+  imu:
+    _target_: carlagen.Sensor
+    name: IMU
+    blueprint: sensor.other.imu
+    location:
+    - 0
+    - 0
+    - 0
+    rotation:
+    - 0
+    - 0
+    - 0
+    attributes:
+      noise_accel_stddev_x: 0
+      noise_accel_stddev_y: 0
+      noise_accel_stddev_z: 0
+      noise_gyro_bias_x: 0
+      noise_gyro_bias_y: 0
+      noise_gyro_bias_z: 0
+      noise_gyro_stddev_x: 0
+      noise_gyro_stddev_y: 0
+      noise_gyro_stddev_z: 0
+      noise_seed: 0
+      sensor_tick: 0
+  collision:
+    _target_: carlagen.Sensor
+    name: collision
+    blueprint: sensor.other.collision
+    attributes: []

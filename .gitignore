@@ -1,0 +1,67 @@
+# =====================
+# Python
+# =====================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# =====================
+# VS Code
+# =====================
+.vscode/
+*.code-workspace
+
+# =====================
+# OS files
+# =====================
+.DS_Store
+Thumbs.db
+
+# =====================
+# Logs
+# =====================
+*.log
+
+# =====================
+# Images (ADDED)
+# =====================
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+
+# =====================
+# ML / Data
+# =====================
+*.h5
+*.model
+*.pt
+*.pth
+*.pkl
+
+# datasets (optional)
+# data/
+# dataset/
+# *.csv
+
+# =====================
+# Git
+# =====================
+.git/

@@ -1,0 +1,7 @@
+- simulation.carla.timeout=120
+- callbacks=seminar
+- sensors=seminar
+- simulation=seminar
+- simulation.carla.bin=/home/ki/projects/work/carla/carla-0.9.14/
+- seed=5
+- simulation.scene_duration=3600

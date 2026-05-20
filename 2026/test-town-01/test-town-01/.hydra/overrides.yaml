@@ -1,0 +1,8 @@
+- simulation.carla.timeout=120
+- callbacks=seminar
+- sensors=seminar
+- simulation=seminar
+- simulation.carla.bin=/home/ki/projects/work/carla/carla-0.9.14/
+- seed=8
+- simulation.scene_duration=3600
+- simulation.world_name=Town01
