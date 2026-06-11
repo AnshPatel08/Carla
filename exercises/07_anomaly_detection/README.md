@@ -71,17 +71,17 @@ The quantitative Area Under the Receiver Operating Characteristic (AUROC) values
 
 | OOD Evaluation Scenario | MSP Baseline AUROC (Ex 9.6) | Feature-Based AUROC (Mahalanobis) (Ex 9.7) | Performance Gap ($\Delta$ AUROC) |
 | :--- | :---: | :---: | :---: |
-| **Fog Scenario** | 0.000 | 1.000 | +1.000 |
-| **Night Scenario** | 0.000 | 1.000 | +1.000 |
-| **New Town Scenario** | 0.000 | 1.000 | +1.000 |
-| **Combined OOD Performance** | 0.000 | 1.000 | +1.000 |
+| **Fog Scenario** | 0.420 | 1.000 | +0.580 |
+| **Night Scenario** | 0.327 | 1.000 | +0.673 |
+| **New Town Scenario** | 0.467 | 1.000 | +0.533 |
+| **Combined OOD Performance** | 0.374 | 1.000 | +0.626 |
 
 #### Methodological Performance Gap Analysis
-The empirical results demonstrate that the **Feature-Based Mahalanobis Distance Detector** significantly outperforms the logit-space MSP baseline across all evaluation conditions, with the largest performance gap appearing in the **Night Scenario (+1.000 AUROC)**.
+The empirical results demonstrate that the **Feature-Based Mahalanobis Distance Detector** significantly outperforms the logit-space MSP baseline across all evaluation conditions, with the largest performance gap appearing in the **Night Scenario (+0.673 AUROC)**.
 
 This massive performance delta stems from how anomalies manifest across model layers. The extreme visual degradation of night cycles completely shifts the network's internal representations, moving feature activations far away from the tightly bounded training clusters. While the final classification layer masks these shifts by forcing inputs into confident binary outputs, the Mahalanobis detector directly measures feature densities within the penultimate layer, successfully capturing the anomaly.
 
-Conversely, the performance gap is smallest in the **New Town Scenario (+1.000 AUROC)**. Because the new town preserves clear-sky illumination and standard lane markings, its feature activations remain close to the nominal training boundaries, making this subtle spatial shift uniquely challenging for both detection methods to isolate.
+Conversely, the performance gap is smallest in the **New Town Scenario (+0.533 AUROC)**. Because the new town preserves clear-sky illumination and standard lane markings, its feature activations remain close to the nominal training boundaries, making this subtle spatial shift uniquely challenging for both detection methods to isolate.
 
 ### High-Risk False Negatives: OOD Monitor Blindspot Log
 An inspection of the anomaly monitor's failure cases reveals critical blindspots within the safety pipeline:
