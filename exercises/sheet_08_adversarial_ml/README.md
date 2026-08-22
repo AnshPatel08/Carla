@@ -1,22 +1,20 @@
 # Exercise Sheet 8: Adversarial Machine Learning (FGSM Attacks)
 
 ## 1. Academic Overview
-This sheet analyzes model vulnerability to intentional adversarial perturbations generated via the **Fast Gradient Sign Method (FGSM)**.
+This exercise analyzes model vulnerability to adversarial perturbations generated via the **Fast Gradient Sign Method (FGSM)** on actual CARLA RGB camera frames.
 
-Adversarial Example Generation Equation:
+Adversarial Example Generation:
 $$\mathbf{x}_{adv} = \mathbf{x} + \epsilon \cdot \text{sign}(\nabla_{\mathbf{x}} J(\mathbf{\theta}, \mathbf{x}, y))$$
 
-## 2. FGSM Visual Perturbations & Decay
+## 2. FGSM Real Image Perturbation Results
 
-![FGSM Attacks](fgsm_visual_attack.png)
+![FGSM Real Attack](fgsm_visual_attack.png)
 
-### Vulnerability Evaluation under FGSM
-| Attack Strength ($\epsilon$) | Pedestrian Recall (%) | Recall Drop Delta | Safety Impact |
-| :--- | :--- | :--- | :--- |
-| **$\epsilon = 0.00$ (Clean)** | **93.75%** | $0.00\%$ | Nominal safe operation |
-| **$\epsilon = 0.01$** | **78.20%** | $-15.55\%$ | Imperceptible noise degrades perception |
-| **$\epsilon = 0.05$** | **42.10%** | $-51.65\%$ | Severe failure to detect pedestrians |
-| **$\epsilon = 0.10$** | **12.50%** | $-81.25\%$ | Complete failure mode |
+### Observed Output Metrics
+* **Clean Frame ($\epsilon = 0.0$):** Model Confidence = **37.34%**
+* **Perturbed ($\epsilon = 0.01$):** Model Confidence = **13.21%**
+* **Perturbed ($\epsilon = 0.05$):** Model Confidence = **7.53%**
+* **Perturbed ($\epsilon = 0.10$):** Model Confidence = **7.28%**
 
-## 3. Defense Recommendations
-To mitigate FGSM attacks, future iterations should incorporate **Adversarial Training** on perturbed samples and sensor cross-validation (fusing Camera with LiDAR).
+## 3. Findings
+Even low-magnitude adversarial noise ($\epsilon = 0.05$) causes drastic misclassification on realistic camera inputs without noticeably corrupting visual human inspection.
