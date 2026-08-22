@@ -1,0 +1,5 @@
+Perturbation_Type,Accuracy_Percent
+Baseline (Clean),94.17
+Lighting Jitter,81.5
+Sensor Blur,73.2
+Random Occlusion,68.4
