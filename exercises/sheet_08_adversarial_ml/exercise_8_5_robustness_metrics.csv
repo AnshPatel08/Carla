@@ -1,0 +1,5 @@
+Epsilon,Model 1 (Baseline),Model 2 (Augmented),Model 3 (Adversarial)
+0.0,93.75,88.5,82.1
+0.01,42.1,56.2,78.4
+0.05,15.3,24.8,65.1
+0.1,4.2,8.5,48.9
