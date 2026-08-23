@@ -1,0 +1,5 @@
+OOD Scenario,AUROC
+Fog Shift,0.9352
+Night Shift,0.9926
+Different CARLA Town,0.8468
+Overall Combined OOD,0.9249
