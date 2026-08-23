@@ -7,11 +7,11 @@ This folder contains the quantitative evaluation, qualitative visualizations, an
 ## Exercise 9.4: Visualising Distribution Shift & Confidence Evaluation
 
 ### 1. Visual Inspection & Qualitative Grid
-The qualitative grid (`distribution_shift_visuals.png`) visualizes five independent daytime test frames under three domain shifts:
+The qualitative grid (`distribution_shift_visuals_v2.png`) visualizes five independent daytime test frames under three domain shifts:
 * **Sensor / Environmental Corruptions (Fog & Night):** Uniform degradation of signal-to-noise ratio, spatial contrast, and pixel dynamic range.
 * **Covariate / Structural Shift (Different CARLA Town):** High visual contrast and daylight conditions, but novel building geometries, road markings, and sidewalk textures unseen in training.
 
-![Distribution Shift Visuals](distribution_shift_visuals.png)
+![Distribution Shift Visuals](distribution_shift_visuals_v2.png)
 
 ---
 
